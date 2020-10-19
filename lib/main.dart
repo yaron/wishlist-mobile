@@ -82,6 +82,7 @@ class _MyAppState extends State<MyApp> {
                 return ListView.separated(
                     itemCount: snapshot.data.length,
                     itemBuilder: (context, index) {
+                      var img;
                       var itemId = snapshot.data[index].rowId;
                       var title = Text(snapshot.data[index].name);
                       var button = InkWell(child:Text('Claimed'));
@@ -102,8 +103,15 @@ class _MyAppState extends State<MyApp> {
                           );
                         }
                       }
+
+                      if (snapshot.data[index].img == "") {
+                        img = Text("");
+                      } else {
+                        img = Image.network(snapshot.data[index].img);
+                      }
+
                       return ListTile(
-                        leading: Image.network(snapshot.data[index].img),
+                        leading: img,
                         title: Row(
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
